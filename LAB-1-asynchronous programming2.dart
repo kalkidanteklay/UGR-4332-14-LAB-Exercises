@@ -15,8 +15,8 @@ Future<void> downloadFile(String url, String savePath) async {
 }
 
 void main() async {
-  String url = 'https://example.com/sample.pdf';
-  String savePath = 'path/to/save/sample.pdf';
+  String url = '';
+  String savePath = '';
 
   try {
     await downloadFile(url, savePath);
