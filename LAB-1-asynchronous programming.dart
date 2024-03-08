@@ -1,26 +1,24 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'dart:math';
 
 Future<String> fetchRandomQuote() async {
-  // Simulating a network delay
+  
   await Future.delayed(Duration(seconds: 2));
 
-  // Fetching a random quote from the QuoteGarden API
-  final response = await http.get(Uri.parse('https://quote-garden.herokuapp.com/api/v3/quotes/random'));
-  if (response.statusCode == 200) {
-    final quote = jsonDecode(response.body)['data'][0]['quoteText'];
-    return quote;
-  } else {
-    throw Exception('Failed to fetch random quote');
-  }
+
+  List<String> quotes = [
+    "The love of liberty is the love of others; the love of power is the love of ourselves.",
+    "Whatever you may be sure of, be sure of this-that you are dreadfully like other people.",
+    "If you don't think your life is worth more than someone else's, sign your donor card and kill yourself now."
+  ];
+
+  Random random = Random();
+  int index = random.nextInt(quotes.length);
+
+  return quotes[index];
 }
 
 void main() async {
-  try {
-    String quote = await fetchRandomQuote();
-    print('Random Quote: $quote');
-  } catch (e) {
-    print('Error: $e');
-  }
+  String quote = await fetchRandomQuote();
+  print('Random Quote: $quote');
 }
